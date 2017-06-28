@@ -1,0 +1,6 @@
+- name: Install the pip things
+  pip:
+    name: "{{item}}"
+  with_items: "{{ pip_items }}"
+  ignore_errors: true
+  become: yes

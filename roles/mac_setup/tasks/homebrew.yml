@@ -1,0 +1,20 @@
+- name: Check if Homebrew is already installed
+  stat:
+    path: /usr/local/bin/brew
+  register: b
+
+- name: Install Homebrew
+  script: install_homebrew.sh
+  when: not b.stat.exists
+
+- name: Install base things from brew
+  homebrew:
+    name: "{{item}}"
+  with_items: "{{ brew_base_items }}"
+  ignore_errors: true
+
+- name: Install cask things from brew
+  homebrew_cask:
+    name: "{{item}}"
+  with_items: "{{ brew_cask_items }}"
+  ignore_errors: true

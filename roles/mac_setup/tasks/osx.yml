@@ -1,0 +1,6 @@
+- shell: defaults read com.apple.finder AppleShowAllFiles
+  register: hiddenfiles
+
+- name: Allowing finder to see all hidden files
+  shell: "defaults write com.apple.finder AppleShowAllFiles YES; killall Finder"
+  when: hiddenfiles.stdout != "YES"

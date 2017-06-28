@@ -1,0 +1,40 @@
+brew_base_items:
+  - vim
+  - git
+  - wget
+  - nmap
+  - sqlite
+  - go
+  - node
+
+brew_cask_items:
+  - atom
+  - docker
+  - dropbox
+  - iterm2
+  - sublime-text2
+  - virtualbox
+  - vagrant
+  - sequel-pro
+  - slack
+  - transmit
+  - firefox
+  - google-chrome
+  - spotify
+  - skitch
+  - alfred
+
+
+pip_items:
+  - virtualenv
+
+
+dotfiles_items:
+  - .bash_profile
+  - .bash_prompt
+  - .vimrc
+
+pathogen_plugins:
+     - repo: "https://github.com/elixir-lang/vim-elixir.git"
+     - repo: "https://github.com/docunext/closetag.vim.git"
+     - repo: "https://github.com/kevinw/pyflakes-vim.git"

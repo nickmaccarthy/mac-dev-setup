@@ -1,0 +1,5 @@
+- name: Install the dotfiles
+  get_url:
+    url: "https://raw.githubusercontent.com/nickmaccarthy/dotfiles/master/{{ item }}"
+    dest: "~/{{ item }}"
+  with_items: "{{ dotfiles_items }}"

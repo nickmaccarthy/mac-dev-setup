@@ -1,0 +1,12 @@
+- include: osx.yml
+
+- include: dotfiles.yml
+
+- include: homebrew.yml
+
+- include: pip.yml
+
+- include_role:
+    name: souenzzo.pathogit
+    vars:
+      pathogen_plugins: "{{ pathogen_plugins }}"
