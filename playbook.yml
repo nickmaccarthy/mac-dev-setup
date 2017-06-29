@@ -1,4 +1,13 @@
 - hosts: 127.0.0.1
-  connection: local 
+  connection: local
+  pre_tasks:
+    - name: Check if we have a custom config
+      stat:
+        path: ./custom.config.yml
+      register: custom_vars
+
+    - name: include our custom.config.yml file 
+      include_vars: custom.config.yml
+      when: custom_vars.stat.exists
   roles:
       - mac_setup

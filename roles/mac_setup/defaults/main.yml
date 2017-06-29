@@ -1,3 +1,12 @@
+# If we should install our dotfiles or not
+dotfiles_install: True
+dotfiles_repo: https://raw.githubusercontent.com/nickmaccarthy/dotfiles/master
+dotfiles_items:
+    - .bash_profile
+    - .bash_prompt
+    - .vimrc
+
+
 brew_base_items:
   - vim
   - git
@@ -6,6 +15,7 @@ brew_base_items:
   - sqlite
   - go
   - node
+
 
 brew_cask_items:
   - atom
@@ -27,12 +37,8 @@ brew_cask_items:
 
 pip_items:
   - virtualenv
+  - virtualenv-mgr
 
-
-dotfiles_items:
-  - .bash_profile
-  - .bash_prompt
-  - .vimrc
 
 pathogen_plugins:
      - repo: "https://github.com/elixir-lang/vim-elixir.git"
