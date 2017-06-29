@@ -1,6 +1,6 @@
-# Mac Development Setup using Ansible
+# Mac Development Setup
 
-The repo contains (using Ansible) the setup instructions for most of the software I use on my Mac for development.  It is meant to ran with a shell script wrapper which will install pip and Ansible, and then run ansible from there.  If you already have Ansible installed, then you can just run Ansible manually.
+This is my automated setup for most of the software I use on my Mac for development.  The purpose of this is to keep an ongoing list of what I am using in my environment and to have an automated way to rebuild it in case I ever need to.  If you find the software list below useful, then please use this as it could save you a few hours vs doing it manually yourself.  It is also customizable with its own configuration if you want to modify which software/programs get installed on your machine as well.  While Ansible does alot of the heavy lifting, it is meant to be ran with a shell script wrapper which will install pip first, and then Ansible, and then runs our playbook from there.  
 
 ## Installation
 1. ensure you have `python` and `easy_install` installed.  You typically do if you have a late-ish MacOS ( El Capitan and above ).
@@ -47,7 +47,7 @@ Programs (installed with Homebrew):
 
 Dotfiles:
 
-It installs all the dotfiles from my [dotfiles](https://github.com/nickmaccarthy/dotfiles) repo
+It installs all the dotfiles from my [dotfiles](https://github.com/nickmaccarthy/dotfiles) repo.  If you have your own dotfiles you want to use instead, simply set your `dotfiles_items` and or your own `dotfiles_repo` in a `custom.config.yml` and this will take care of that for you.   
 
 ## Overriding default Application / Programs
 
@@ -55,9 +55,7 @@ You may want to customize which applications and or programs that get installed 
 
 Example `custom.config.yml`:
 ```
-dotfiles:
-  install: False
-
+dotfiles_install: False
 
 brew_base_items:
   - openssl
@@ -79,3 +77,6 @@ pathogen_plugins:
   - repo: "https://github.com/kevinw/pyflakes-vim.git"
 
 ```
+
+## Author
+[Nick MacCarthy](http://nickmaccarthy.com), 2016.  Inspired by the mac setup of [Jeff Geerling](https://github.com/geerlingguy/mac-dev-playbook)
