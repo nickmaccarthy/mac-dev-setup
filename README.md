@@ -48,3 +48,34 @@ Programs (installed with Homebrew):
 Dotfiles:
 
 It installs all the dotfiles from my [dotfiles](https://github.com/nickmaccarthy/dotfiles) repo
+
+## Overriding default Application / Programs
+
+You may want to customize which applications and or programs that get installed through Brew / Cask / Pip etc.  Its easy to do, simply create a file called `custom.config.yml` and place it in the root of this directory (same directory that `playbook.yml` and this `README` is in), and then add your own items.
+
+Example `custom.config.yml`:
+```
+dotfiles:
+  install: False
+
+
+brew_base_items:
+  - openssl
+  - vim
+  - git
+  - wget
+  - node
+
+brew_cask_items:
+  - docker
+  - iterm2
+  - vagrant
+  - virtualbox
+
+pip_items:
+  - virtualenv
+
+pathogen_plugins:
+  - repo: "https://github.com/kevinw/pyflakes-vim.git"
+
+```
