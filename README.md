@@ -49,7 +49,7 @@ Dotfiles:
 
 It installs all the dotfiles from my [dotfiles](https://github.com/nickmaccarthy/dotfiles) repo.  If you have your own dotfiles you want to use instead, simply set your `dotfiles_items` and or your own `dotfiles_repo` in a `custom.config.yml` and this will take care of that for you.   
 
-## Overriding default Application / Programs
+## Overriding Default Application / Programs
 
 You may want to customize which applications and or programs that get installed through Brew / Cask / Pip etc.  Its easy to do, simply create a file called `custom.config.yml` and place it in the root of this directory (same directory that `playbook.yml` and this `README` is in), and then add your own items.
 
