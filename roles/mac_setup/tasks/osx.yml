@@ -1,5 +1,5 @@
 - shell: defaults read com.apple.finder AppleShowAllFiles
-  ignore_erros: True 
+  ignore_errors: True 
   register: hiddenfiles
 
 - name: Allowing finder to see all hidden files
