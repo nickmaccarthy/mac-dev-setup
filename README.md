@@ -78,5 +78,16 @@ pathogen_plugins:
 
 ```
 
+## Adding additional Applications / Programs
+
+If you are satisfied with the default application/program list, but want to add a few more items, you can do so by adding you items to the `additional` item lists
+
+Example:
+```
+additional_brew_cask_items:
+  - visual-studio
+```
+
+
 ## Author
 [Nick MacCarthy](http://nickmaccarthy.com), 2016.  Inspired by the mac setup of [Jeff Geerling](https://github.com/geerlingguy/mac-dev-playbook)

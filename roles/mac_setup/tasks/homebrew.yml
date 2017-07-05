@@ -1,3 +1,9 @@
+- set_fact:
+    all_brew_base_items: "{{ brew_base_items + additional_brew_base_items }}"
+
+- set_fact:
+    all_brew_cask_items: "{{ brew_cask_items + additional_brew_cask_items }}"
+
 - name: Check if Homebrew is already installed
   stat:
     path: /usr/local/bin/brew
@@ -10,11 +16,11 @@
 - name: Install base things from brew
   homebrew:
     name: "{{item}}"
-  with_items: "{{ brew_base_items }}"
+  with_items: "{{ all_brew_base_items }}"
   ignore_errors: true
 
 - name: Install cask things from brew
   homebrew_cask:
     name: "{{item}}"
-  with_items: "{{ brew_cask_items }}"
+  with_items: "{{ all_brew_cask_items }}"
   ignore_errors: true
