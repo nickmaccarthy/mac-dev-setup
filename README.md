@@ -89,5 +89,7 @@ additional_brew_cask_items:
 ```
 
 
+## Changelog
+* 2017-07-19 - Added support for consolas font installation, checkout `tasks/consolas.yml` for more details
 ## Author
 [Nick MacCarthy](http://nickmaccarthy.com), 2016.  Inspired by the mac setup of [Jeff Geerling](https://github.com/geerlingguy/mac-dev-playbook)
