@@ -16,6 +16,7 @@ brew_base_items:
   - sqlite
   - go
   - node
+  - cabextract
 
 additional_brew_base_items: []
 

@@ -3,6 +3,7 @@
 - include: dotfiles.yml
 
 - include: homebrew.yml
+  tagbs: homebrew
 
 - include: pip.yml
 
@@ -10,3 +11,6 @@
     name: souenzzo.pathogit
     vars:
       pathogen_plugins: "{{ pathogen_plugins }}"
+
+- include: consolas.yml
+  tags: consolas
