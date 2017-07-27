@@ -36,6 +36,7 @@ brew_cask_items:
   - spotify
   - skitch
   - alfred
+  - github-desktop
 
 additional_brew_cask_items: []
 
