@@ -9,8 +9,9 @@
 
 - include_role:
     name: souenzzo.pathogit
-    vars:
-      pathogen_plugins: "{{ pathogen_plugins }}"
+    #vars:
+    #  pathogen_plugins: "{{ pathogen_plugins }}"
 
-- include: consolas.yml
-  tags: consolas
+# Can't find consolas exe anymore, disabling for now
+#- include: consolas.yml
+#  tags: consolas

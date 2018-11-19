@@ -23,8 +23,9 @@
 
 - name: Install base things from brew
   homebrew:
-    name: "{{item}}"
-  with_items: "{{ all_brew_base_items }}"
+    #name: "{{item}}"
+    name: "{{ all_brew_base_items }}"
+  #with_items: "{{ all_brew_base_items }}"
   ignore_errors: true
   tags:
     - homebrew
@@ -32,8 +33,9 @@
 
 - name: Install cask things from brew
   homebrew_cask:
-    name: "{{item}}"
-  with_items: "{{ all_brew_cask_items }}"
+    #name: "{{item}}"
+    name: "{{ all_brew_cask_items }}"
+  #with_items: "{{ all_brew_cask_items }}"
   ignore_errors: true
   tags:
     - homebrew

@@ -17,11 +17,12 @@ brew_base_items:
   - go
   - node
   - cabextract
+  - htop
+  - lsof
 
 additional_brew_base_items: []
 
 brew_cask_items:
-  - atom
   - docker
   - dropbox
   - iterm2
