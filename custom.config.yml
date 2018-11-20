@@ -1,0 +1,30 @@
+dotfiles_install: no 
+
+brew_base_items:
+  - openssl
+  - vim
+  - git
+  - wget
+  - htop
+  - node
+  - golang
+
+brew_cask_items:
+  - docker
+  - iterm2
+  - alfred
+  - skype
+  - slack
+  - sublime-text
+  - vagrant
+  - virtualbox
+
+
+additional_brew_cask_items:
+  - visual-studio-code
+
+pip_items:
+  - virtualenv
+
+pathogen_plugins:
+  - repo: "https://github.com/kevinw/pyflakes-vim.git"

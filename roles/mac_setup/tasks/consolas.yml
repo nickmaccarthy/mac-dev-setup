@@ -1,6 +1,6 @@
 - name: Check to see if we have Consolas fonts alreay installed
   stat:
-    path: ~/Library/Fonts/CONSOLA.TTF
+    path: ~/Library/Fonts/Consolas.ttf
   register: f
   tags: consolas
 
@@ -13,27 +13,29 @@
 
 - name: Download Consolas
   get_url:
-      url: http://download.microsoft.com/download/f/5/a/f5a3df76-d856-4a61-a6bd-722f52a5be26/PowerPointViewer.exe
+      #url: http://download.microsoft.com/download/f/5/a/f5a3df76-d856-4a61-a6bd-722f52a5be26/PowerPointViewer.exe
+      url: https://github.com/tsenart/sight/raw/master/fonts/Consolas.ttf
       dest: /tmp/consolas
   tags: consolas
   when: not f.stat.exists
 
-- name: Extract PowerPointViewer.exe
-  shell: cd /tmp/consolas && cabextract /tmp/consolas/PowerPointViewer.exe
-  tags:
-    - consolas
-    - consolas-extract
-  when: not f.stat.exists
+# - name: Extract PowerPointViewer.exe
+#   shell: cd /tmp/consolas && cabextract /tmp/consolas/PowerPointViewer.exe
+#   tags:
+#     - consolas
+#     - consolas-extract
+#   when: not f.stat.exists
 
-- name: cabextract ppviewer.cab
-  shell: cd /tmp/consolas && cabextract /tmp/consolas/ppviewer.cab
-  tags:
-    - consolas
-    - consolas-extract
-  when: not f.stat.exists
+# - name: cabextract ppviewer.cab
+#   shell: cd /tmp/consolas && cabextract /tmp/consolas/ppviewer.cab
+#   tags:
+#     - consolas
+#     - consolas-extract
+#   when: not f.stat.exists
 
 - name: Move font files to fonts folder
-  shell: mv /tmp/consolas/CONSOLA*.TTF ~/Library/Fonts
+  #shell: mv /tmp/consolas/CONSOLA*.TTF ~/Library/Fonts
+  shell: mv /tmp/consolas/Consolas.ttf ~/Library/Fonts
   when: not f.stat.exists
   tags: consolas
 

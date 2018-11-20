@@ -6,6 +6,6 @@
   shell: "defaults write com.apple.finder AppleShowAllFiles YES; killall Finder"
   when: hiddenfiles.stdout != "YES"
 
-- name: fix power and standby to ensure mac doesnt shutdown after sleeping for extended period of time
-  shell: pmset -a standby 0 autopoweroff 0
-  become: yes
+# - name: fix power and standby to ensure mac doesnt shutdown after sleeping for extended period of time
+#   shell: pmset -a standby 0 autopoweroff 0
+#   become: yes
