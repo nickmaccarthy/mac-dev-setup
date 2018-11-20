@@ -1,6 +1,6 @@
 dotfiles_install: no 
 
-brew_base_items:
+additional_brew_base_items:
   - openssl
   - vim
   - git
@@ -9,7 +9,8 @@ brew_base_items:
   - node
   - golang
 
-brew_cask_items:
+additional_brew_cask_items:
+  - visual-studio-code
   - docker
   - iterm2
   - alfred
@@ -19,9 +20,6 @@ brew_cask_items:
   - vagrant
   - virtualbox
 
-
-additional_brew_cask_items:
-  - visual-studio-code
 
 pip_items:
   - virtualenv

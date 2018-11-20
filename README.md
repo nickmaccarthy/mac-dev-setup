@@ -51,7 +51,7 @@ It installs all the dotfiles from my [dotfiles](https://github.com/nickmaccarthy
 
 ## Overriding Default Application / Programs
 
-You may want to customize which applications and or programs that get installed through Brew / Cask / Pip etc.  Its easy to do, simply create a file called `custom.config.yml` and place it in the root of this directory (same directory that `playbook.yml` and this `README` is in), and then add your own items.
+You may want to customize which applications and or programs that get installed through Brew / Cask / Pip etc.  Its easy to do, simply create a file called `custom.config.yml` (included in this repo) and place it in the root of this directory (same directory that `playbook.yml` and this `README` is in), and then add your own items.
 
 Example `custom.config.yml`:
 ```
