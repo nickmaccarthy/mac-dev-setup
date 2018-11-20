@@ -19,7 +19,7 @@ ansible-playbook playbook.yml -vv --ask-sudo-pass
 
 Applications (installed with Homebrew Cask):
 
-  - [Atom](https://atom.io)
+  - [Visual Studio Code](https://code.visualstudio.com/)
   - [Docker](https://www.docker.com/)
   - [Dropbox](https://www.dropbox.com/)
   - [Firefox](https://www.mozilla.org/en-US/firefox/new/)
@@ -35,11 +35,13 @@ Applications (installed with Homebrew Cask):
   - [Spotify](https://www.spotify.com)
   - [Alfred](https://www.alfredapp.com/)
   - [iterm2](https://www.iterm2.com/)
+  - [Skype](https://www.skype.com/)
 
 Programs (installed with Homebrew):
   - vim
   - git
   - wget
+  - htop
   - nmap
   - sqlite
   - go
@@ -90,6 +92,7 @@ additional_brew_cask_items:
 
 
 ## Changelog
+* `2018-11-20` - Added support for Ansible 2.4+.  Added `custom.config.yml` to main repo.  Modified `runit.sh` to add tests.  
 * `2017-07-19` - Added support for consolas font installation, checkout `tasks/consolas.yml` for more details
 ## Author
 [Nick MacCarthy](http://nickmaccarthy.com), 2016.  Inspired by the mac setup of [Jeff Geerling](https://github.com/geerlingguy/mac-dev-playbook)
