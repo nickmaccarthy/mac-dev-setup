@@ -24,7 +24,7 @@
 - name: Install base things from brew
   homebrew:
     name: "{{ all_brew_base_items }}"
-  ignore_errors: true
+  register: result
   tags:
     - homebrew
     - homebrew-cask
@@ -32,7 +32,8 @@
 - name: Install cask things from brew
   homebrew_cask:
     name: "{{ all_brew_cask_items }}"
-  ignore_errors: true
+    accept_external_apps: True  
   tags:
     - homebrew
     - homebrew_cask
+    - cask_only

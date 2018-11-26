@@ -27,7 +27,6 @@ brew_cask_items:
   - dropbox
   - iterm2
   - sublime-text2
-  - virtualbox
   - vagrant
   - sequel-pro
   - slack
@@ -38,6 +37,7 @@ brew_cask_items:
   - skitch
   - alfred
   - github-desktop
+  - virtualbox
 
 additional_brew_cask_items: []
 

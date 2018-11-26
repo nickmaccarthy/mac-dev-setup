@@ -11,6 +11,7 @@ additional_brew_base_items:
 
 additional_brew_cask_items:
   - visual-studio-code
+  - skitch
   - docker
   - iterm2
   - alfred
@@ -19,6 +20,7 @@ additional_brew_cask_items:
   - sublime-text
   - vagrant
   - virtualbox
+
 
 
 pip_items:
