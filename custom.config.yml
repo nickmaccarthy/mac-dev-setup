@@ -8,6 +8,7 @@ additional_brew_base_items:
   - htop
   - node
   - golang
+  - bash-completion
 
 additional_brew_cask_items:
   - visual-studio-code
@@ -20,6 +21,7 @@ additional_brew_cask_items:
   - sublime-text
   - vagrant
   - virtualbox
+  - kubernetes-cli
 
 
 
