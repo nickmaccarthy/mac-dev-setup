@@ -1,4 +1,4 @@
-dotfiles_install: no 
+dotfiles_install: yes 
 
 additional_brew_base_items:
   - openssl
@@ -9,6 +9,8 @@ additional_brew_base_items:
   - node
   - golang
   - bash-completion
+  - gnu-tar
+  - jq
 
 additional_brew_cask_items:
   - visual-studio-code
@@ -22,6 +24,7 @@ additional_brew_cask_items:
   - vagrant
   - virtualbox
   - kubernetes-cli
+  - postman
 
 
 
