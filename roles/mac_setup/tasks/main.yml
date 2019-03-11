@@ -7,10 +7,10 @@
 
 - include: pip.yml
 
-- include_role:
-    name: souenzzo.pathogit
-    #vars:
-    #  pathogen_plugins: "{{ pathogen_plugins }}"
-
-- include: consolas.yml
-  tags: consolas
+  #- include_role:
+  #    name: souenzzo.pathogit
+  #    #vars:
+  #    #  pathogen_plugins: "{{ pathogen_plugins }}"
+  #
+  #- include: consolas.yml
+  #  tags: consolas
