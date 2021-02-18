@@ -21,12 +21,11 @@ additional_brew_cask_items:
   - skype
   - slack
   - sublime-text
-  - vagrant
-  - virtualbox
-  - kubernetes-cli
   - postman
 
 
+
+default_shell: bash
 
 pip_items:
   - virtualenv
