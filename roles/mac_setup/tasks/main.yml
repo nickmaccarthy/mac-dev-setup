@@ -3,7 +3,7 @@
 - include: dotfiles.yml
 
 - include: homebrew.yml
-  tagbs: homebrew
+  tags: homebrew
 
 - include: pip.yml
 
