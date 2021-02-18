@@ -1,19 +1,30 @@
 # Mac Development Setup
 
-This is my automated setup for most of the software I use on my Mac for development.  The purpose of this is to keep an ongoing list of what I am using in my environment and to have an automated way to rebuild it in case I ever need to.  If you find the software list below useful, then please use this as it could save you a few hours vs doing it manually yourself.  It is also customizable with its own configuration if you want to modify which software/programs get installed on your machine as well.  While Ansible does alot of the heavy lifting, it is meant to be ran with a shell script wrapper which will install pip first, and then Ansible, and then runs our playbook from there.  
+This is my automated setup for most of the software I use on my Mac for development.  The purpose of this is to keep an ongoing list of what I am using in my environment and to have an automated way to rebuild it in case I ever need to.  If you find the software list below useful, then please use this as it could save you a few hours vs doing it manually yourself.  It is also customizable with its own configuration if you want to modify which software/programs get installed on your machine as well. 
 
 ## Installation
-1. ensure you have `python` and `easy_install` installed.  You typically do if you have a late-ish MacOS ( El Capitan and above ).
-2. From your terminal, run the shell script `./runit.sh`
-3. Provide the sudo passwords when it asks
-4. ...
-5. Profit
 
-### Running just ansible
-If you want to run just ansible by its self, from this directory simply run.
+1. ensure you have `python3` and `pip` installed.  You typically do if you have a late-ish MacOS ( El Capitan and above ).
+2. Create a virtual environment and install ansible in it
+
+```bash
+python3 -m venv ~/venvs/mac_ansible
+source ~/venvs/mac_ansible/bin/activate
+pip3 install ansible
 ```
-ansible-playbook playbook.yml -vv --ask-sudo-pass
+
+3. Run the playbook
+
+```bash
+ansible-playbook playbook.yml
+
 ```
+
+4. Provide the sudo passwords when it asks
+5. ...
+6. Profit
+
+
 
 ## Included Applications / Configurations:
 
@@ -56,8 +67,13 @@ It installs all the dotfiles from my [dotfiles](https://github.com/nickmaccarthy
 You may want to customize which applications and or programs that get installed through Brew / Cask / Pip etc.  Its easy to do, simply create a file called `custom.config.yml` (included in this repo) and place it in the root of this directory (same directory that `playbook.yml` and this `README` is in), and then add your own items.
 
 Example `custom.config.yml`:
-```
-dotfiles_install: False
+
+```yaml
+# Install my .dotfiles from my repo here: https://github.com/nickmaccarthy/dotfiles
+dotfiles_install: True
+
+# Set the default shell to bash.  On recent version of OSX, this has been zsh.  I typically do all my scripting in bash, so I am overwriting here.
+default_shell: bash
 
 brew_base_items:
   - openssl
@@ -75,9 +91,6 @@ brew_cask_items:
 pip_items:
   - virtualenv
 
-pathogen_plugins:
-  - repo: "https://github.com/kevinw/pyflakes-vim.git"
-
 ```
 
 ## Adding additional Applications / Programs
@@ -85,14 +98,19 @@ pathogen_plugins:
 If you are satisfied with the default application/program list, but want to add a few more items, you can do so by adding you items to the `additional` item lists
 
 Example:
-```
+
+```yaml
 additional_brew_cask_items:
-  - visual-studio
+  - visual-studio-code
 ```
 
 
 ## Changelog
+
+* `2021-02-18` - Getting things to work with python3 and later version of OSX like Catalina and Big Sur.  
 * `2018-11-20` - Added support for Ansible 2.4+.  Added `custom.config.yml` to main repo.  Modified `runit.sh` to add tests.  
 * `2017-07-19` - Added support for consolas font installation, checkout `tasks/consolas.yml` for more details
+
 ## Author
+
 [Nick MacCarthy](http://nickmaccarthy.com), 2016.  Inspired by the mac setup of [Jeff Geerling](https://github.com/geerlingguy/mac-dev-playbook)
