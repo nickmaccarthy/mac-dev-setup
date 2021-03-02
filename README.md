@@ -5,7 +5,7 @@ This is my automated setup for most of the software I use on my Mac for developm
 ## Installation
 
 1. ensure you have `python3` and `pip` installed.  You typically do if you have a late-ish MacOS ( El Capitan and above ).
-2. Create a virtual environment and install ansible in it
+2. Create a virtual environment and install ansible in it - for this example, lets just create the virtualenv in our `$HOME`
 
 ```bash
 python3 -m venv ~/venvs/mac_ansible
@@ -46,7 +46,6 @@ Applications (installed with Homebrew Cask):
   - [Spotify](https://www.spotify.com)
   - [Alfred](https://www.alfredapp.com/)
   - [iterm2](https://www.iterm2.com/)
-  - [Skype](https://www.skype.com/)
 
 Programs (installed with Homebrew):
   - vim
@@ -107,6 +106,7 @@ additional_brew_cask_items:
 
 ## Changelog
 
+* `2021-03-02` - Added tags as well as kubectl, helm and kops
 * `2021-02-18` - Getting things to work with python3 and later version of OSX like Catalina and Big Sur.  
 * `2018-11-20` - Added support for Ansible 2.4+.  Added `custom.config.yml` to main repo.  Modified `runit.sh` to add tests.  
 * `2017-07-19` - Added support for consolas font installation, checkout `tasks/consolas.yml` for more details
