@@ -1,16 +1,28 @@
 - include: osx.yml
+  tags: osx
 
 - include: dotfiles.yml
+  tags: dotfiles
 
 - include: homebrew.yml
   tags: homebrew
 
 - include: pip.yml
+  tags: pip
 
-  #- include_role:
-  #    name: souenzzo.pathogit
-  #    #vars:
-  #    #  pathogen_plugins: "{{ pathogen_plugins }}"
-  #
-  #- include: consolas.yml
-  #  tags: consolas
+- include: kubectl.yml
+  tags: kubectl
+  when: kubectl_versions is defined
+
+- include: kops.yml
+  tags: kops
+  when: kops_versions is defined
+
+- include_tasks: "helm.yml"
+  vars:
+    release: "{{ item }}"
+  tags: helm
+  loop: "{{ helm_versions }}"
+  loop_control:
+    label: "{{ item }}"
+  when: helm_versions is defined

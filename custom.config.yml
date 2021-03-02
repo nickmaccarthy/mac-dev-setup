@@ -1,4 +1,12 @@
-dotfiles_install: yes 
+---
+dotfiles_install: True
+dotfiles_repo: https://raw.githubusercontent.com/nickmaccarthy/dotfiles/master
+dotfiles_items:
+    - .bash_profile
+    - .bash_prompt
+    - .vimrc
+
+default_shell: bash
 
 additional_brew_base_items:
   - openssl
@@ -18,17 +26,32 @@ additional_brew_cask_items:
   - docker
   - iterm2
   - alfred
-  - skype
   - slack
   - sublime-text
   - postman
+  - drawio
+  - vagrant
+  - virtualbox
 
+# Kubectl things
+kubectl_versions:
+  - '1.17.14'
+  - '1.18.14'
 
+kubectl_default_version: '1.17.14'
 
-default_shell: bash
+# Kops things
+kops_versions:
+  - 1.16.4
 
-pip_items:
-  - virtualenv
+kops_default_version: 1.16.4
 
-pathogen_plugins:
-  - repo: "https://github.com/kevinw/pyflakes-vim.git"
+# helm things
+helm_versions:
+  - 3.3.1
+  - 3.4.2
+
+helm_default_version: 3.4.2
+
+# pip_items:
+#   - virtualenv

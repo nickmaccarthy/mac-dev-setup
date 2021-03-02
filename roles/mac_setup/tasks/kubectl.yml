@@ -1,0 +1,16 @@
+- name: install kubectl versions
+  get_url: 
+    url: "https://dl.k8s.io/release/v{{ item }}/bin/darwin/amd64/kubectl"
+    dest: "/usr/local/bin/kubectl-{{ item }}"
+    mode: +x
+  loop: "{{ kubectl_versions }}"
+  loop_control:
+    label: "{{ item }}"
+  when: kubectl_versions is defined 
+
+- name: Set default kubectl
+  file:
+    src: "/usr/local/bin/kubectl-{{ kubectl_default_version }}"
+    dest: "/usr/local/bin/kubectl"
+    state: link
+  when: kubectl_default_version is defined

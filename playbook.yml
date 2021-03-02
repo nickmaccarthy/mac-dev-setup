@@ -5,9 +5,11 @@
       stat:
         path: ./custom.config.yml
       register: custom_vars
-
+      tags: custom_vars
+      
     - name: include our custom.config.yml file 
       include_vars: custom.config.yml
       when: custom_vars.stat.exists
+      tags: custom_vars
   roles:
       - mac_setup

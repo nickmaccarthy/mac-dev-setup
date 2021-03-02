@@ -1,0 +1,49 @@
+---
+- name: see if we already have our binary version installed
+  stat:
+    path: "/usr/local/bin/helm-{{ release }}"
+  register: helm_binary
+  tags:
+    - helm
+
+- block:
+  - name: download and install our helm versions
+    ansible.builtin.get_url:
+      url: "https://get.helm.sh/helm-v{{ release }}-darwin-amd64.tar.gz"
+      dest: "/tmp"
+    tags:
+      - helm
+
+  - name: unarchive our helm archive
+    ansible.builtin.unarchive:
+      src: "/tmp/helm-v{{ release }}-darwin-amd64.tar.gz"
+      dest: /tmp
+      remote_src: false
+    tags:
+      - helm 
+
+  - name: move our helm binary to /usr/local/bin
+    ansible.builtin.shell: 
+      cmd: "mv /tmp/darwin-amd64/helm /usr/local/bin/helm-{{ release }}"
+    tags:
+      - helm 
+
+  - name: cleanup after ourselves
+    ansible.builtin.shell: 
+      cmd: "rm -rf /tmp/darwin-amd64 && rm -rf helm-v{{ release }}-darwin-amd64.tar.gz"
+    tags:
+      - helm
+  tags:
+    - helm  
+  when:
+      - not helm_binary.stat.exists
+
+- name: set default helm version
+  file:
+    state: link
+    src: "/usr/local/bin/helm-{{ helm_default_version }}"
+    dest: /usr/local/bin/helm
+  when: helm_default_version is defined
+  tags:
+    - helm
+    - helm-default

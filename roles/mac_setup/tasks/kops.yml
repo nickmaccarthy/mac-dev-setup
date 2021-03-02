@@ -1,0 +1,16 @@
+- name: install kops versions
+  get_url: 
+    url: "https://github.com/kubernetes/kops/releases/download/v{{ item }}/kops-darwin-amd64"
+    dest: "/usr/local/bin/kops-{{ item }}"
+    mode: +x
+  loop: "{{ kops_versions }}"
+  loop_control:
+    label: "{{ item }}"
+  when: kops_versions is defined 
+
+- name: Set default kops
+  file:
+    src: "/usr/local/bin/kops-{{ kops_default_version }}"
+    dest: "/usr/local/bin/kops"
+    state: link
+  when: kops_default_version is defined
