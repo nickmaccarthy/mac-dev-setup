@@ -21,11 +21,21 @@
   tags:
     - vault
 
+
+- name: see if we already have our default vault binary version installed
+  stat:
+    path: "/usr/local/bin/vault-{{ vault_default_version }}"
+  register: vault_default_binary
+  tags:
+    - vault
+
 - name: "Set default Vault to {{ vault_default_version }}"
   file:
     src: "/usr/local/bin/vault-{{ vault_default_version }}"
     dest: "/usr/local/bin/vault"
     state: link
-  when: vault_default_version is defined
+  when: 
+    - vault_default_version is defined
+    - vault_default_binary.stat.exists
   tags:
     - vault
