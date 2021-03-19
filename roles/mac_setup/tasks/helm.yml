@@ -43,7 +43,9 @@
     state: link
     src: "/usr/local/bin/helm-{{ helm_default_version }}"
     dest: /usr/local/bin/helm
-  when: helm_default_version is defined
+  when: 
+    - helm_default_version is defined
+    - helm_binary.stat.exists
   tags:
     - helm
     - helm-default
