@@ -19,6 +19,20 @@ additional_brew_base_items:
   - bash-completion
   - gnu-tar
   - jq
+  - sops
+  - pyenv
+  - pyenv-virtualenv
+  - nmap
+  - mysql-client
+  - kubectx
+  - tree 
+  - watch 
+  - awscli
+  - helmfile
+  - terragrunt
+  - bash-completion@2
+  - gpg 
+  - blackbox
 
 additional_brew_cask_items:
   - visual-studio-code
@@ -53,5 +67,16 @@ helm_versions:
 
 helm_default_version: 3.4.2
 
-# pip_items:
-#   - virtualenv
+# Terraform things
+terraform_versions:
+  - 0.14.0
+  - 0.14.8
+
+terraform_default_version: "0.14.0"
+
+# Vault things
+vault_versions:
+  - 1.7.0-rc1
+  - 1.6.3
+  
+vault_default_version:  1.7.0-rc1

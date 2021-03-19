@@ -7,6 +7,8 @@
   loop_control:
     label: "{{ item }}"
   when: kubectl_versions is defined 
+  tags:
+    - kubectl
 
 - name: Set default kubectl
   file:
@@ -14,3 +16,17 @@
     dest: "/usr/local/bin/kubectl"
     state: link
   when: kubectl_default_version is defined
+  tags:
+    - kubectl
+
+- name: Make ~/.kuberc 
+  template:
+    src: kuberc 
+    dest: "~/.kuberc"
+  tags:
+    - kubectl
+
+- name: Add the kubectl completion script to /usr/local/etc/bash_completion.d 
+  shell: "kubectl completion bash >/usr/local/etc/bash_completion.d/kubectl"
+  tags: 
+    - kubectl

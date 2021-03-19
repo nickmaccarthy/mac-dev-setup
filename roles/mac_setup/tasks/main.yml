@@ -18,7 +18,7 @@
   tags: kops
   when: kops_versions is defined
 
-- include_tasks: "helm.yml"
+- include_tasks: helm.yml
   vars:
     release: "{{ item }}"
   tags: helm
@@ -26,3 +26,22 @@
   loop_control:
     label: "{{ item }}"
   when: helm_versions is defined
+
+- include_tasks: terraform.yml
+  vars:
+    release: "{{ item }}"
+  tags: terraform 
+  loop: "{{ terraform_versions }}"
+  loop_control:
+    label: "{{ item }}"
+  when: terraform_versions is defined
+
+- include_tasks: vault.yml 
+  vars:
+    release: "{{ item }}"
+  loop: "{{ vault_versions }}"
+  loop_control:
+    label: "{{ item }}"
+  when: vault_versions is defined
+  tags:
+    - vault

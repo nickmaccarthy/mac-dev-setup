@@ -1,0 +1,49 @@
+---
+- name: see if we already have our binary version installed
+  stat:
+    path: "/usr/local/bin/terraform-{{ release }}"
+  register: tf_binary
+  tags:
+    - terraform
+
+- block:
+  - name: download and install our terraform versions
+    ansible.builtin.get_url:
+      url: "https://releases.hashicorp.com/terraform/{{ release }}/terraform_{{ release }}_darwin_amd64.zip"
+      dest: "/tmp"
+    tags:
+      - terraform
+
+  - name: unarchive our terraform archive
+    ansible.builtin.unarchive:
+      src: "/tmp/terraform_{{ release }}_darwin_amd64.zip"
+      dest: /tmp
+      remote_src: false
+    tags:
+      - terraform 
+
+  - name: move our helm binary to /usr/local/bin
+    ansible.builtin.shell: 
+      cmd: "mv /tmp/terraform /usr/local/bin/terraform-{{ release }}"
+    tags:
+      - terraform 
+
+  - name: cleanup after ourselves
+    ansible.builtin.shell: 
+      cmd: "rm -rf /tmp/terraform && rm -rf /tmp/terraform_{{ release }}_darwin_amd64.zip"
+    tags:
+      - terraform
+  tags:
+    - terraform  
+  when:
+      - not tf_binary.stat.exists
+
+- name: set default terraform version
+  file:
+    state: link
+    src: "/usr/local/bin/terraform-{{ terraform_default_version }}"
+    dest: /usr/local/bin/terraform
+  when: terraform_default_version is defined
+  tags:
+    - terraform
+    - terraform-default

@@ -1,0 +1,31 @@
+- name: see if we already have our vault binary version installed
+  stat:
+    path: "/usr/local/bin/vault-{{ release }}"
+  register: vault_binary
+  tags:
+    - vault
+
+- block:
+  - name: "Install Vault version {{ release }}"
+    ansible.builtin.unarchive: 
+      src: "https://releases.hashicorp.com/vault/{{ release }}/vault_{{ release }}_darwin_amd64.zip"
+      dest: "/tmp"
+      remote_src: yes
+
+  - name: "Move vault binary {{ release }} to /usr/local/bin/vault-{{ release }}"
+    shell: "mv /tmp/vault /usr/local/bin/vault-{{ release }}"
+
+  when: 
+    - vault_versions is defined 
+    - not vault_binary.stat.exists
+  tags:
+    - vault
+
+- name: "Set default Vault to {{ vault_default_version }}"
+  file:
+    src: "/usr/local/bin/vault-{{ vault_default_version }}"
+    dest: "/usr/local/bin/vault"
+    state: link
+  when: vault_default_version is defined
+  tags:
+    - vault
