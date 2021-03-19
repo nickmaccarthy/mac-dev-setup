@@ -40,10 +40,12 @@
 
 - name: see if we already have our default helm binary version installed
   stat:
-    path: "/usr/local/bin/helm-{{ release }}"
+    path: "/usr/local/bin/helm-{{ helm_default_version }}"
   register: helm_default_binary
+  when: helm_default_version is defined
   tags:
     - helm
+    - helm_default
 
 - name: set default helm version
   file:
