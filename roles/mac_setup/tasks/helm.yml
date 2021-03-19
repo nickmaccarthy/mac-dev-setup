@@ -38,6 +38,13 @@
   when:
       - not helm_binary.stat.exists
 
+- name: see if we already have our default helm binary version installed
+  stat:
+    path: "/usr/local/bin/helm-{{ release }}"
+  register: helm_default_binary
+  tags:
+    - helm
+
 - name: set default helm version
   file:
     state: link
@@ -45,7 +52,7 @@
     dest: /usr/local/bin/helm
   when: 
     - helm_default_version is defined
-    - helm_binary.stat.exists
+    - helm_default_binary.stat.exists
   tags:
     - helm
     - helm-default
