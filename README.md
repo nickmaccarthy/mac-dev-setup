@@ -16,7 +16,7 @@ pip3 install ansible
 3. Run the playbook
 
 ```bash
-ansible-playbook playbook.yml
+ansible-playbook playbook.yml --ask-become-pass
 
 ```
 
@@ -106,6 +106,7 @@ additional_brew_cask_items:
 
 ## Changelog
 
+* `2021-07-03` - Fixed various bugs and added support for M series macs, set default shell to zsh and added ohmyzsh!
 * `2021-03-02` - Added tags as well as kubectl, helm and kops
 * `2021-02-18` - Getting things to work with python3 and later version of OSX like Catalina and Big Sur.  
 * `2018-11-20` - Added support for Ansible 2.4+.  Added `custom.config.yml` to main repo.  Modified `runit.sh` to add tests.  

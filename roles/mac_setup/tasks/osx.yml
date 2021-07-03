@@ -6,7 +6,6 @@
   shell: "defaults write com.apple.finder AppleShowAllFiles YES; killall Finder"
   when: hiddenfiles.stdout != "YES"
 
-
 - name: Get shell we are currently using
   shell: echo $SHELL
   register: current_shell
@@ -17,6 +16,9 @@
     - default_shell is defined
     - default_shell not in current_shell.stdout
 
+- name: Ensure our user is in the wheel group
+  shell: "dscl . -append /Groups/wheel GroupMembership {{ lookup('env','USER') }}"
+  become: yes 
 
 # - name: fix power and standby to ensure mac doesnt shutdown after sleeping for extended period of time
 #   shell: pmset -a standby 0 autopoweroff 0

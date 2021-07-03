@@ -1,0 +1,20 @@
+- name: See if we have oh my zsh already installed
+  stat:
+    path: ~/.oh-my-zsh/oh-my-zsh.sh
+  register: ohmyzsh
+  tags: 
+    - zsg
+
+- name: Install oh my zsh!
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  when: not ohmyzsh.stat.exists
+  tags:
+    - zsh
+
+- name: Install zshrc
+  template:
+    src: zshrc 
+    dest: ~/.zshrc
+  tags:
+    - zsh 
+

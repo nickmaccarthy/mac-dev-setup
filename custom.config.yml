@@ -2,11 +2,14 @@
 dotfiles_install: True
 dotfiles_repo: https://raw.githubusercontent.com/nickmaccarthy/dotfiles/master
 dotfiles_items:
-    - .bash_profile
-    - .bash_prompt
-    - .vimrc
+    - bash_profile
+    - vimrc
+    - kuberc
 
-default_shell: bash
+default_shell: /bin/zsh
+
+zsh:
+  theme: "rkj-repos"
 
 additional_brew_base_items:
   - openssl
@@ -16,8 +19,6 @@ additional_brew_base_items:
   - htop
   - node
   - golang
-  - bash-completion
-  - gnu-tar
   - jq
   - sops
   - pyenv
@@ -33,6 +34,8 @@ additional_brew_base_items:
   - bash-completion@2
   - gpg 
   - blackbox
+  - gnu-tar
+  - zsh-completions
 
 additional_brew_cask_items:
   - visual-studio-code
@@ -44,8 +47,6 @@ additional_brew_cask_items:
   - sublime-text
   - postman
   - drawio
-  - vagrant
-  - virtualbox
 
 # Kubectl things
 kubectl_versions:
@@ -71,12 +72,13 @@ helm_default_version: 3.4.2
 terraform_versions:
   - 0.14.0
   - 0.14.8
+  - 0.15.3
 
-terraform_default_version: "0.14.0"
+terraform_default_version: "0.15.3"
 
 # Vault things
 vault_versions:
-  - 1.7.0-rc1
-  - 1.6.3
+  - "1.7.1"
+  - "1.6.3"
   
-vault_default_version:  1.7.0-rc1
+vault_default_version:  "1.7.1"

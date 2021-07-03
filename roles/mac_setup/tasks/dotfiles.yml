@@ -1,9 +1,9 @@
 - set_fact:
     all_dotfiles_items: "{{ dotfiles_items + additional_dotfiles_items }}"
 
-- name: Install the dotfiles
-  get_url:
-    url: "{{dotfiles_repo}}/{{ item }}"
-    dest: "~/{{ item }}"
+- name: Install our dotfiles
+  template:
+    src: "{{ item }}"
+    dest: "~/.{{ item }}"
   with_items: "{{ all_dotfiles_items }}"
-  when: dotfiles_install == True
+  when: dotfiles_install == True  

@@ -1,7 +1,7 @@
 ---
 - name: see if we already have our binary version installed
   stat:
-    path: "/usr/local/bin/helm-{{ release }}"
+    path: "{{ homebrew_path }}/helm-{{ release }}"
   register: helm_binary
   tags:
     - helm
@@ -22,9 +22,9 @@
     tags:
       - helm 
 
-  - name: move our helm binary to /usr/local/bin
+  - name: move our helm binary to {{ homebrew_path }}
     ansible.builtin.shell: 
-      cmd: "mv /tmp/darwin-amd64/helm /usr/local/bin/helm-{{ release }}"
+      cmd: "mv /tmp/darwin-amd64/helm {{ homebrew_path }}/helm-{{ release }}"
     tags:
       - helm 
 
@@ -40,7 +40,7 @@
 
 - name: see if we already have our default helm binary version installed
   stat:
-    path: "/usr/local/bin/helm-{{ helm_default_version }}"
+    path: "{{ homebrew_path }}/helm-{{ helm_default_version }}"
   register: helm_default_binary
   when: helm_default_version is defined
   tags:
@@ -50,8 +50,8 @@
 - name: set default helm version
   file:
     state: link
-    src: "/usr/local/bin/helm-{{ helm_default_version }}"
-    dest: /usr/local/bin/helm
+    src: "{{ homebrew_path }}/helm-{{ helm_default_version }}"
+    dest: "{{ homebrew_path }}/helm"
   when: 
     - helm_default_version is defined
     - helm_default_binary.stat.exists

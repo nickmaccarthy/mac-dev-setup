@@ -1,0 +1,8 @@
+- name: See if we have Rosetta 2 already installed
+  stat:
+    path: /Library/Apple/System/Library/LaunchDaemons/com.apple.oahd.plist
+  register: r
+
+- name: Install Rosetta 2
+  shell: /usr/sbin/softwareupdate --install-rosetta --agree-to-license 
+  when: not r.stat.exists

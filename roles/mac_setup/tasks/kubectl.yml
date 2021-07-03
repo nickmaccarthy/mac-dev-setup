@@ -1,7 +1,7 @@
 - name: install kubectl versions
   get_url: 
     url: "https://dl.k8s.io/release/v{{ item }}/bin/darwin/amd64/kubectl"
-    dest: "/usr/local/bin/kubectl-{{ item }}"
+    dest: "{{ homebrew_path }}/kubectl-{{ item }}"
     mode: +x
   loop: "{{ kubectl_versions }}"
   loop_control:
@@ -12,8 +12,8 @@
 
 - name: Set default kubectl
   file:
-    src: "/usr/local/bin/kubectl-{{ kubectl_default_version }}"
-    dest: "/usr/local/bin/kubectl"
+    src: "{{ homebrew_path }}/kubectl-{{ kubectl_default_version }}"
+    dest: "{{ homebrew_path }}/kubectl"
     state: link
   when: kubectl_default_version is defined
   tags:
@@ -26,7 +26,7 @@
   tags:
     - kubectl
 
-- name: Add the kubectl completion script to /usr/local/etc/bash_completion.d 
-  shell: "kubectl completion bash >/usr/local/etc/bash_completion.d/kubectl"
+- name: Add the kubectl completion script to {{ homebrew_base_path }}/etc/bash_completion.d 
+  shell: "kubectl completion bash > {{ homebrew_base_path }}/etc/bash_completion.d/kubectl"
   tags: 
     - kubectl

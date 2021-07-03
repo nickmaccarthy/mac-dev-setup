@@ -1,12 +1,20 @@
 - include: osx.yml
   tags: osx
 
-- include: dotfiles.yml
-  tags: dotfiles
+- include: zsh.yml 
+  when: 
+    - default_shell is defined and 'zsh' in default_shell
+
+- include: mseries.yml
+  tags: mseries 
+  when: 'ansible_architecture == "arm64"'
 
 - include: homebrew.yml
   tags: homebrew
 
+- include: dotfiles.yml
+  tags: dotfiles
+  
 - include: pip.yml
   tags: pip
 
@@ -36,6 +44,16 @@
     label: "{{ item }}"
   when: terraform_versions is defined
 
+- name: set default terraform version
+  file:
+    state: link
+    src: "{{ homebrew_path }}/terraform-{{ terraform_default_version }}"
+    dest: "{{ homebrew_path }}/terraform"
+  when: terraform_default_version is defined
+  tags:
+    - terraform
+    - terraform-default
+
 - include_tasks: vault.yml 
   vars:
     release: "{{ item }}"
@@ -43,5 +61,16 @@
   loop_control:
     label: "{{ item }}"
   when: vault_versions is defined
+  tags:
+    - vault
+
+- name: "Set default Vault to {{ vault_default_version }}"
+  file:
+    src: "{{ homebrew_path }}/vault-{{ vault_default_version }}"
+    dest: "{{ homebrew_path }}/vault"
+    state: link
+  when: 
+    - vault_default_version is defined
+    - vault_default_binary.stat.exists
   tags:
     - vault

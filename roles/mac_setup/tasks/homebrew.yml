@@ -1,16 +1,36 @@
 - set_fact:
     all_brew_base_items: "{{ brew_base_items + additional_brew_base_items }}"
-  tags: homebrew
+  tags: 
+    - homebrew
+    - custom_vars
 
 - set_fact:
     all_brew_cask_items: "{{ brew_cask_items + additional_brew_cask_items }}"
   tags:
     - homebrew
     - homebrew-cask  
+    - custom_vars
 
+- name: Set homebrew_path fact
+  set_fact:
+    homebrew_base_path: "/usr/local"
+    homebrew_path: "/usr/local/bin"
+  tags:
+    - homebrew
+    - custom_vars
+
+- name: Set homebrew_path when on an M series arch
+  set_fact:
+    homebrew_base_path: "/opt/homebrew"
+    homebrew_path: "/opt/homebrew/bin"
+  when: 'ansible_architecture == "arm64"'
+  tags:
+    - homebrew
+    - custom_vars
+   
 - name: Check if Homebrew is already installed
   stat:
-    path: /usr/local/bin/brew
+    path: "{{ homebrew_path }}/brew"
   register: b
   tags: homebrew
 
@@ -20,6 +40,13 @@
   tags:
     - homebrew
     - homebrew-cask
+
+- name: Ensure Homebrew is in our path
+  ansible.builtin.lineinfile:
+    path: ~/.bash_profile 
+    regexp: 'PATH={{ homebrew_path }}:$PATH'
+    insertafter: 'PATH=$HOME/bin:$PATH'
+    line: "PATH={{ homebrew_path }}:$PATH"
 
 - name: Install base things from brew
   homebrew:

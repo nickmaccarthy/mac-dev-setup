@@ -1,6 +1,6 @@
 - name: see if we already have our vault binary version installed
   stat:
-    path: "/usr/local/bin/vault-{{ release }}"
+    path: "{{ homebrew_path }}/vault-{{ release }}"
   register: vault_binary
   tags:
     - vault
@@ -12,8 +12,8 @@
       dest: "/tmp"
       remote_src: yes
 
-  - name: "Move vault binary {{ release }} to /usr/local/bin/vault-{{ release }}"
-    shell: "mv /tmp/vault /usr/local/bin/vault-{{ release }}"
+  - name: "Move vault binary {{ release }} to {{ homebrew_path }}/vault-{{ release }}"
+    shell: "mv /tmp/vault {{ homebrew_path }}/vault-{{ release }}"
 
   when: 
     - vault_versions is defined 
@@ -21,21 +21,9 @@
   tags:
     - vault
 
-
 - name: see if we already have our default vault binary version installed
   stat:
-    path: "/usr/local/bin/vault-{{ vault_default_version }}"
+    path: "{{ homebrew_path }}/vault-{{ vault_default_version }}"
   register: vault_default_binary
-  tags:
-    - vault
-
-- name: "Set default Vault to {{ vault_default_version }}"
-  file:
-    src: "/usr/local/bin/vault-{{ vault_default_version }}"
-    dest: "/usr/local/bin/vault"
-    state: link
-  when: 
-    - vault_default_version is defined
-    - vault_default_binary.stat.exists
   tags:
     - vault

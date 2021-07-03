@@ -1,7 +1,7 @@
 ---
 - name: see if we already have our binary version installed
   stat:
-    path: "/usr/local/bin/terraform-{{ release }}"
+    path: "{{ homebrew_path }}/terraform-{{ release }}"
   register: tf_binary
   tags:
     - terraform
@@ -22,9 +22,9 @@
     tags:
       - terraform 
 
-  - name: move our helm binary to /usr/local/bin
+  - name: move our helm binary to {{ homebrew_path }}
     ansible.builtin.shell: 
-      cmd: "mv /tmp/terraform /usr/local/bin/terraform-{{ release }}"
+      cmd: "mv /tmp/terraform {{ homebrew_path }}/terraform-{{ release }}"
     tags:
       - terraform 
 
@@ -38,12 +38,3 @@
   when:
       - not tf_binary.stat.exists
 
-- name: set default terraform version
-  file:
-    state: link
-    src: "/usr/local/bin/terraform-{{ terraform_default_version }}"
-    dest: /usr/local/bin/terraform
-  when: terraform_default_version is defined
-  tags:
-    - terraform
-    - terraform-default
