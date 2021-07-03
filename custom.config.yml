@@ -10,6 +10,8 @@ default_shell: /bin/zsh
 
 zsh:
   theme: "rkj-repos"
+  p10k:
+    enabled: yes 
   plugins:
     - git 
     - ansible 
@@ -48,6 +50,7 @@ additional_brew_base_items:
   - blackbox
   - gnu-tar
   - zsh-completions
+  - romkatv/powerlevel10k/powerlevel10k
 
 additional_brew_cask_items:
   - visual-studio-code

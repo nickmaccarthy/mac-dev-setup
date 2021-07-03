@@ -12,9 +12,16 @@
     - zsh
 
 - name: Install zshrc
-  template:
+  ansible.builtin.template:
     src: zshrc 
     dest: ~/.zshrc
   tags:
     - zsh 
 
+- name: Install p10k.zsh
+  ansible.builtin.copy:
+    src: p10k.zsh
+    dest: ~/.p10k.zsh
+  tags:
+    - zsh
+    - p10k
