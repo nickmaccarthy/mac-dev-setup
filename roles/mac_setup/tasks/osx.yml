@@ -20,6 +20,9 @@
   shell: "dscl . -append /Groups/wheel GroupMembership {{ lookup('env','USER') }}"
   become: yes 
 
-# - name: fix power and standby to ensure mac doesnt shutdown after sleeping for extended period of time
-#   shell: pmset -a standby 0 autopoweroff 0
-#   become: yes
+- name: Set our KeyRepeat Time
+  shell: defaults write NSGlobalDomain KeyRepeat -int 1
+
+- name: Set out Key Delay Time
+  shell: defaults read NSGlobalDomain InitialKeyRepeat -int 12
+

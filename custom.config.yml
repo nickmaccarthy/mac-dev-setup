@@ -10,6 +10,18 @@ default_shell: /bin/zsh
 
 zsh:
   theme: "rkj-repos"
+  plugins:
+    - git 
+    - ansible 
+    - terraform 
+    - virtualenv 
+    - pip 
+    - osx 
+    - kubectl 
+    - helm 
+    - docker 
+    - aws 
+    - vault
 
 additional_brew_base_items:
   - openssl
