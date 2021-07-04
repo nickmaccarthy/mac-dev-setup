@@ -103,9 +103,17 @@ additional_brew_cask_items:
   - visual-studio-code
 ```
 
+## Shell support
+
+By default, this will install zsh and the powerlevel10k zsh theme.  zsh has just been easier to manage on modern macs vs bash, so I've switched over to using it.  At the time of this writing, I'm liking the powerlevel10k theme, so I'm installing it by default.  It installs enough to get you going, but if you run a `p10k configure`, it will not overwrite your future changes.
+
+## M Series (M1) mac support
+
+The times they are a changin'.  I have recently purchased a new M series Mac, and while running this playbook, I noticed homebrew, etc gets installed into a different directoy.  I have updated this playbook to account for M series systems and defined facts that should work between both M1 and Intel architectures. If you run into any issues, let me know by opening an issue.
 
 ## Changelog
 
+* `2021-04-04` - Powerlevel10k zsh theme added
 * `2021-07-03` - Fixed various bugs and added support for M series macs, set default shell to zsh and added ohmyzsh!
 * `2021-03-02` - Added tags as well as kubectl, helm and kops
 * `2021-02-18` - Getting things to work with python3 and later version of OSX like Catalina and Big Sur.  

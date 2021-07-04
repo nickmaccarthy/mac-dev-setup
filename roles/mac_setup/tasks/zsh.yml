@@ -3,11 +3,12 @@
     path: ~/.oh-my-zsh/oh-my-zsh.sh
   register: ohmyzsh
   tags: 
-    - zsg
+    - zsh
 
 - name: Install oh my zsh!
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  when: not ohmyzsh.stat.exists
+  when: 
+    - not ohmyzsh.stat.exists
   tags:
     - zsh
 
@@ -18,10 +19,20 @@
   tags:
     - zsh 
 
+- name: See if p10k.zsh is there
+  stat:
+    path: ~/.p10k.zsh
+  register: p10k
+  tags:
+    - zsh
+
 - name: Install p10k.zsh
   ansible.builtin.copy:
     src: p10k.zsh
     dest: ~/.p10k.zsh
+  when:
+    - not p10k.stat.exists
+    - not zsh.p10k.managed
   tags:
     - zsh
     - p10k

@@ -10,23 +10,6 @@
     - homebrew
     - homebrew-cask  
     - custom_vars
-
-- name: Set homebrew_path fact
-  set_fact:
-    homebrew_base_path: "/usr/local"
-    homebrew_path: "/usr/local/bin"
-  tags:
-    - homebrew
-    - custom_vars
-
-- name: Set homebrew_path when on an M series arch
-  set_fact:
-    homebrew_base_path: "/opt/homebrew"
-    homebrew_path: "/opt/homebrew/bin"
-  when: 'ansible_architecture == "arm64"'
-  tags:
-    - homebrew
-    - custom_vars
    
 - name: Check if Homebrew is already installed
   stat:
