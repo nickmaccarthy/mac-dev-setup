@@ -12,7 +12,7 @@ zsh:
   theme: "rkj-repos"
   p10k:
     enabled: yes 
-    manged: no
+    managed: no
   plugins:
     - git 
     - ansible 
