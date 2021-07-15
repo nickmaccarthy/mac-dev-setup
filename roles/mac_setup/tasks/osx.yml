@@ -40,7 +40,7 @@
   tags:
     - osx
 
-- name: Hide show dock instantly
+- name: Hide show dock instantly on intel macs
   shell: defaults write com.apple.Dock autohide-delay -float 0.0001 && killall Dock 
   when: 'ansible_architecture != "arm64"'
   tags:
