@@ -1,28 +1,53 @@
 - shell: defaults read com.apple.finder AppleShowAllFiles
   ignore_errors: True 
   register: hiddenfiles
+  tags:
+    - osk 
 
 - name: Allowing finder to see all hidden files
   shell: "defaults write com.apple.finder AppleShowAllFiles YES; killall Finder"
   when: hiddenfiles.stdout != "YES"
+  tags:
+    - osx 
 
 - name: Get shell we are currently using
   shell: echo $SHELL
   register: current_shell
+  tags:
+    - osx
 
 - name: "Set shell to {{ default_shell }}"
   shell: "chsh -s {{ default_shell }}"
   when:
     - default_shell is defined
     - default_shell not in current_shell.stdout
+  tags:
+    - osx 
 
 - name: Ensure our user is in the wheel group
   shell: "dscl . -append /Groups/wheel GroupMembership {{ lookup('env','USER') }}"
   become: yes 
+  tags:
+    - osx 
 
 - name: Set our KeyRepeat Time
   shell: defaults write NSGlobalDomain KeyRepeat -int 1
+  tags:
+    - osx
 
 - name: Set out Key Delay Time
   shell: defaults read NSGlobalDomain InitialKeyRepeat -int 12
+  tags:
+    - osx
 
+- name: Hide show dock instantly
+  shell: defaults write com.apple.Dock autohide-delay -float 0.0001 && killall Dock 
+  when: 'ansible_architecture != "arm64"'
+  tags:
+    - osx
+
+- name: Hide show dock instanly on M series macs 
+  shell: defaults write com.apple.dock autohide-delay -float 0.0001 && defaults write com.apple.dock autohide-time-modifier -float 0.1 && killall Dock
+  when: 'ansible_architecture == "arm64"'
+  tags:
+    - osx 
